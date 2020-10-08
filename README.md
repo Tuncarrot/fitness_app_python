@@ -1,1 +1,1 @@
-"# fitness_app_python" 
+This is a fitness tracking application, it now runs with python
