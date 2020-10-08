@@ -11,6 +11,9 @@ I track calories, workout routines and nutrition budgeting
 (be in project directory)
 
 SET FLASK_APP=fitnessAppFlask.py
+
 SET FLASK_DEBUG=1
+
 flask run
+
 
