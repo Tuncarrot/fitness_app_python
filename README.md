@@ -1,1 +1,7 @@
-This is a fitness tracking application, it now runs with python
+# Fitness App 
+
+This application runs in python, in an attempt to learn python
+
+# What do I do?
+
+I track calories, workout routines and nutrition budgeting
