@@ -7,14 +7,27 @@
         <p>{{ post.content }}</p>
     {% endfor %}
 -->
-    <h1>Home Page</h1>
+    <button onclick="switchLayout()">
+        <div class="toggle"></div>
+    </button>
+    <h1>Welcome</h1>
+    <div id="layout-icon">
         <ul>
-            <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-            <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-            <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-            <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-            <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-            <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
+            <li><a href="#" id="login-colour-bg"><i class="fas fa-sign-in-alt"></i></a></li>
+            <li><a href="#" id="account-colour-bg"><i class="fas fa-user-circle"></i></a></li>
+            <li><a href="#" id="nutrition-colour-bg"><i class="fas fa-utensils"></i></a></li>
+            <li><a href="#" id="workout-colour-bg"><i class="fas fa-dumbbell"></i></a></li>
+            <li><a href="#" id="budget-colour-bg"><i class="fas fa-dollar-sign"></i></a></li>
         </ul>
+    </div>
+    <div id="layout-paragraph">
+        <h2>
+        To start using this application, <a href="#" id="login-colour">Sign In</a> first.<br>
+        Feel free to manage your <a href="#" id="account-colour">account</a> to change the look and feel of this program.<br>
+        Your <a href="#" id="nutrition-colour">nutrition</a> will be tracked.<br>
+        We can also record your <a href="#" id="workout-colour">workout</a> information.<br>
+        Lastly, you can <a href="#" id="budget-colour">budget</a> your diet with us.<br>
+        </h2>
+    </div>
 
 {% endblock content %}
