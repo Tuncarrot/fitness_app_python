@@ -5,45 +5,52 @@
     --color-3: #fb3000;
     --color-4: #ff8f00;
     --color-5: #00806a;
+
+    --color-6: #f8f8ff;
 }
 
-#login-colour
+#site-bg
+{
+    background-color: var(--color-6);
+}
+
+.login-colour
 {
     color: var(--color-1);
 }
-#login-colour-bg
+.login-colour-bg
 {
     background: var(--color-1);
 }
-#account-colour
+.account-colour
 {
     color: var(--color-2);
 }
-#account-colour-bg
+.account-colour-bg
 {
     background: var(--color-2);
 }
-#nutrition-colour
+.nutrition-colour
 {
     color: var(--color-3);
 }
-#nutrition-colour-bg
+.nutrition-colour-bg
 {
     background: var(--color-3);
 }
-#workout-colour
+.workout-colour
 {
     color: var(--color-4);
 }
-#workout-colour-bg
+.workout-colour-bg
 {
     background: var(--color-4);
 }
-#budget-colour
+.budget-colour
 {
     color: var(--color-5);
 }
-#budget-colour-bg
+.budget-colour-bg
 {
     background: var(--color-5);
 }

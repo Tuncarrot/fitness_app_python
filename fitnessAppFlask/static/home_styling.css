@@ -42,6 +42,7 @@ ul li a
 }
 ul li a:hover
 {
+    text-decoration: none;
     color: #999;
     transform: translateY(-20px);
     box-shadow: inset -1px -1px 2px rgba(0,0,0,0.2),
@@ -97,4 +98,43 @@ ul li a:before
     background: #00151f;
     border-radius:50%;
     transition:0.5s;
+}
+
+.btn-switch {
+    text-decoration: none;
+    border:none;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 12px, 36px;
+    margin: 10px 0;
+    border-radius: 40px;
+    letter-spacing: 2px;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(90deg, #0162c8, #ff72c0)
+}
+span
+{
+    position: absolute;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    pointer-events:none;
+    border-radius: 50%;
+    animation: splash 1s linear infinite;
+    overflow: hidden;
+}
+@keyframes splash
+{
+    0%
+    {
+        width: 0px;
+        height: 0px;
+        opacity: 0.5;
+    }
+    100%
+    {
+        width: 50px;
+        height: 50px;
+        opacity: 0;
+    }
 }
