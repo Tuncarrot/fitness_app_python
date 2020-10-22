@@ -14,6 +14,10 @@
     background-color: var(--color-6);
 }
 
+.site-font-colour
+{
+    color: var(--color-6);
+}
 .login-colour
 {
     color: var(--color-1);
