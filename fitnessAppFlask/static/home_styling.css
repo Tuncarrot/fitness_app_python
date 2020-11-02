@@ -113,28 +113,3 @@ ul li a:before
     color: #fff;
     background: linear-gradient(90deg, #0162c8, #ff72c0)
 }
-span
-{
-    position: absolute;
-    background: #fff;
-    transform: translate(-50%, -50%);
-    pointer-events:none;
-    border-radius: 50%;
-    animation: splash 1s linear infinite;
-    overflow: hidden;
-}
-@keyframes splash
-{
-    0%
-    {
-        width: 0px;
-        height: 0px;
-        opacity: 0.5;
-    }
-    100%
-    {
-        width: 50px;
-        height: 50px;
-        opacity: 0;
-    }
-}
