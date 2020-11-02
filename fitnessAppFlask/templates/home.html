@@ -11,7 +11,11 @@
     <h1 class="header-font">Welcome</h1>
     <div id="layout-icon">
         <ul>
+            {% if current_user.is_authenticated %}
+            <li><a href=" {{url_for('logout') }}" class="login-colour-bg"><i class="fas fa-sign-out-alt fa-flip-horizontal"></i></a></li>
+            {% else %}
             <li><a href=" {{url_for('login') }}" class="login-colour-bg"><i class="fas fa-sign-in-alt"></i></a></li>
+            {% endif %}
             <li><a href=" {{url_for('account') }}" class="account-colour-bg"><i class="fas fa-user-circle"></i></a></li>
             <li><a href="#" class="nutrition-colour-bg"><i class="fas fa-utensils"></i></a></li>
             <li><a href="#" class="workout-colour-bg"><i class="fas fa-dumbbell"></i></a></li>
@@ -19,9 +23,9 @@
         </ul>
         <button onclick="switchLayout()" class="btn-switch">Need An Introduction?</button>
     </div>
-    <div id="layout-paragraph">
+    <div id="layout-paragraph"> 
         <h2 class="content-font">
-        To start using this tool, <a href=" {{url_for('register') }}" class="keyword login-colour">Create an account</a> and <a href=" {{url_for('login') }}" class="keyword login-colour">Sign In</a> first.<br>
+        You are signed in, <a href=" {{url_for('logout') }}" class="keyword login-colour">Sign Out</a> here.<br>
         Feel free to manage your <a href=" {{url_for('account') }}" class="keyword account-colour">account</a> to change the look and feel of this program.<br>
         Your <a href="#" class="keyword nutrition-colour">nutrition</a> will be tracked.<br>
         We can also record your <a href="#" class="keyword workout-colour">workout</a> information.<br>
