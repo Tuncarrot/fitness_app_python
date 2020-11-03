@@ -1,6 +1,7 @@
+import os, binascii
 from flask import render_template, url_for, flash, redirect, request # import render_template function for rendering HTML pages individually, url 4 for finding files in the background
 from fitnessAppFlask import app, db, bcrypt
-from fitnessAppFlask.forms import RegistrationForm, LoginForm
+from fitnessAppFlask.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from fitnessAppFlask.models import User, Calorie                            # Using models in views, DB needs to exist first
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -62,8 +63,29 @@ def logout():
     logout_user()            
     return redirect(url_for('home_page'))
 
+def save_picture(form_picture): #Move this into seperate file, along with db query/submit/connection stuff
+    random_hex = binascii.b2a_hex(os.urandom(4)).decode("utf-8")
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+    form_picture.save(picture_path)
+    return picture_fn
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 @login_required         
-def account():          
-    return render_template('account.html', title='Account')
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file
+        current_user.name = form.name.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Account Details Updated', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.name.data = current_user.name
+        form.email.data = current_user.email
+    image_file= url_for('static', filename='profile_pics/' + current_user.image_file)          
+    return render_template('account.html', title='Account', image_file=image_file, form=form)
