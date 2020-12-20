@@ -1,6 +1,7 @@
 import os, binascii
+from PIL import Image
 from flask import render_template, url_for, flash, redirect, request # import render_template function for rendering HTML pages individually, url 4 for finding files in the background
-from fitnessAppFlask import app, db, bcrypt
+from fitnessAppFlask import app, db, bcrypt, constants
 from fitnessAppFlask.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from fitnessAppFlask.models import User, Calorie                            # Using models in views, DB needs to exist first
 from flask_login import login_user, current_user, logout_user, login_required
@@ -68,12 +69,14 @@ def save_picture(form_picture): #Move this into seperate file, along with db que
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
-    form_picture.save(picture_path)
+    i = Image.open(form_picture)
+    i=i.resize((constants.IMG_PIXEL_HEIGHT, constants.IMG_PIXEL_WIDTH), Image.ANTIALIAS)
+    i.save(picture_path)
     return picture_fn
 
-@app.route('/account', methods=['GET', 'POST'])
+@app.route('/account/updateInfo', methods=['GET', 'POST'])
 @login_required         
-def account():
+def account_updateInfo():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
@@ -83,9 +86,21 @@ def account():
         current_user.email = form.email.data
         db.session.commit()
         flash('Account Details Updated', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('account_home'))
     elif request.method == 'GET':
         form.name.data = current_user.name
         form.email.data = current_user.email
     image_file= url_for('static', filename='profile_pics/' + current_user.image_file)          
-    return render_template('account.html', title='Account', image_file=image_file, form=form)
+    return render_template('/account/updateInfo.html', title='Account', image_file=image_file, form=form)
+
+@app.route('/account/home', methods=['GET', 'POST'])
+@login_required         
+def account_home():
+    form = UpdateAccountForm()
+    if request.method == 'GET':
+        form.name.data = current_user.name
+        form.email.data = current_user.email
+    image_file= url_for('static', filename='profile_pics/' + current_user.image_file)          
+    return render_template('/account/home.html', title='Account', image_file=image_file, form=form)
+
+    

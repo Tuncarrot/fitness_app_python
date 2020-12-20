@@ -18,6 +18,16 @@
 .card-form-format-account
 {
     padding: 2em;
-    background-color: var(--color-2);
     border-radius: 40px;
+}
+
+.card-form-profile-pic
+{
+    border-radius: 40px;
+}
+
+.profile-pic
+{
+    margin-left: auto;
+    margin-right: auto;
 }

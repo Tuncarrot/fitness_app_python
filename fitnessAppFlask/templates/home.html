@@ -16,7 +16,7 @@
             {% else %}
             <li><a href=" {{url_for('login') }}" class="login-colour-bg"><i class="fas fa-sign-in-alt"></i></a></li>
             {% endif %}
-            <li><a href=" {{url_for('account') }}" class="account-colour-bg"><i class="fas fa-user-circle"></i></a></li>
+            <li><a href=" {{url_for('account_home') }}" class="account-colour-bg"><i class="fas fa-user-circle"></i></a></li>
             <li><a href="#" class="nutrition-colour-bg"><i class="fas fa-utensils"></i></a></li>
             <li><a href="#" class="workout-colour-bg"><i class="fas fa-dumbbell"></i></a></li>
             <li><a href="#" class="budget-colour-bg"><i class="fas fa-dollar-sign"></i></a></li>
@@ -25,8 +25,12 @@
     </div>
     <div id="layout-paragraph"> 
         <h2 class="content-font">
+        {% if current_user.is_authenticated %}
         You are signed in, <a href=" {{url_for('logout') }}" class="keyword login-colour">Sign Out</a> here.<br>
-        Feel free to manage your <a href=" {{url_for('account') }}" class="keyword account-colour">account</a> to change the look and feel of this program.<br>
+        {% else %}
+        To start,<a href=" {{url_for('register') }}" class="keyword login-colour">Create An Account</a> and <a href=" {{url_for('login') }}" class="keyword login-colour">Sign In</a> here.<br>
+        {% endif %}
+        Feel free to manage your <a href=" {{url_for('account_home') }}" class="keyword account-colour">account</a> to change the look and feel of this program.<br>
         Your <a href="#" class="keyword nutrition-colour">nutrition</a> will be tracked.<br>
         We can also record your <a href="#" class="keyword workout-colour">workout</a> information.<br>
         Lastly, you can <a href="#" class="keyword budget-colour">budget</a> your diet with us.<br>
